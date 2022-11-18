@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="navbar">
+<link rel="stylesheet" type="text/css"
+href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<head>
+<meta charset="utf-8">
+<title>Ajout et modification des types</title>
+<link rel="icon" type="image/x-icon" href="../images/icon.png">
+ <style>
+ html,body{
+	background:#DBDFFD;
+}
+ </style>
+</head>
+<body>
+<div layout:fragment="Mynavbar">
+<div class="container mt-5">
+<div class="card" style='border:1px solid black;border-radius:10px;'>
+<div class="card-header" th:if="${mode=='new'}"><center><h1 style='font-weight: bold;color:#001D6E;'>Ajout des types</h1></center></div>
+ <div class="card-header" th:if="${mode=='edit'}"><center><h1 style='font-weight: bold;color:#001D6E;'>Modification des types</h1></center></div>
+<div class="card-body">
+ <form th:action="@{savetype}" method="post">
+ <div class="form-group">
+<label class="control-label" hidden>ID type :</label>
+<input type="hidden" name="idtype" class="form-control"
+th:value="${types.idtype}" />
+ </div>
+
+<div class="form-group">
+ <label class="control-label">Nom type :</label>
+ <input type="text" name="nomtype" class="form-control" th:value="${types.nomtype}" required/>
+
+</div>
+<div class="form-group">
+<label class="control-label">Description type :</label>
+<textarea name="descriptiontype" class="form-control" th:value="${types.descriptiontype}" th:text="${types.descriptiontype}" required></textarea>
+</div>
+ <div style="text-align:center;margin-top:20px;">
+  <a th:href="@{Listetype}" ><button type="button" class="btn btn-secondary">Annuler</button></a>
+ <button type="submit" class="btn btn-primary">Valider</button>
+ </div>
+ </div>
+</form>
+</div>
+ </div>
+ </div>
+ </div>
+</body>
+</html>
